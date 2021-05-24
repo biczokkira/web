@@ -1,0 +1,41 @@
+<div *ngIf="currentAllergy" class="edit-form">
+  <h4>Allergy</h4>
+  <form>
+    <mat-form-field class="form-group">
+      <label for="patient">Patient</label>
+      <input matInput
+             type="text"
+             class="form-control"
+             id="patient"
+             [(ngModel)]="allergy.patient"
+             name="patient"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+      <label for="code">AllergyCode</label>
+      <input matInput
+             type="text"
+             class="form-control"
+             id="code"
+             [(ngModel)]="allergy.code"
+             name="code"
+      />
+    </mat-form-field>
+  </form>
+
+  <button mat-button class="badge badge-danger mr-2" (click)="deleteAllergy()">
+    Delete
+  </button>
+
+  <button mat-button type="submit" class="badge badge-success" (click)="updateAllergy()">
+    Update
+  </button>
+  <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentAllergy">
+  <br />
+  <p>Cannot access this Allergy...</p>
+</div>
+

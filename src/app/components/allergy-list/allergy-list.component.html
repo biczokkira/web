@@ -1,0 +1,37 @@
+<div>
+<span>{{title}}</span>
+    <div class="searchbar">
+      <input type="text" placeholder="Keresés" matInput [formControl]="myControl">
+    </div>
+</div>
+
+<div class="list" style="alignment: center">
+  <mat-card appOnHover class="col-md-12">
+    <h4 style="text-align: center">Allergy List</h4>
+    <mat-divider></mat-divider>
+    <mat-list role="list" class="list-group">
+      <mat-list-item
+        class="list-group-item"
+        *ngFor="let all of allergy; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveAllergy(all, i)"
+      >
+        {{ all.patient | up}}
+      </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider><br>
+  </mat-card>
+  <mat-card class="col-md-12">
+    <div *ngIf="currentAllergy">
+      <app-allergy-details
+        (refreshList)="refreshList()"
+        [allergy]="currentAllergy"
+      ></app-allergy-details>
+    </div>
+    <div *ngIf="!currentAllergy">
+      <br />
+      <p>Please click on a Allergy...</p>
+    </div>
+  </mat-card>
+</div>
